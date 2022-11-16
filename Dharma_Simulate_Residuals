@@ -1,0 +1,7 @@
+library(DHARMa)
+
+res1 <- simulateResiduals(all19to21.mod, plot = T)
+
+res1
+
+testZeroInflation(res1)
