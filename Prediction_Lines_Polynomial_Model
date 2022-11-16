@@ -1,0 +1,11 @@
+library(glmmTMB)
+library(effects)
+library(DHARMa)
+
+modxg2020<-glmmTMB(Trap_Total~Ethanol_.g.d.+I(Ethanol_.g.d.^2)+(1|Block),
+	nbinom2,data=subset(xg,Year=="2020"&Treatment!="Blank"))
+summary(modxg2020)
+simulationOutput <- simulateResiduals(fittedModel = modxg2020, n = 250)
+plot(simulationOutput)
+plot(effect("Ethanol_.g.d.",modxg2020),main="X. germanus 2020")
+r.squaredGLMM(modxg2020)
