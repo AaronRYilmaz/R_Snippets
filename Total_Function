@@ -1,0 +1,18 @@
+# get the total and sd from a dataset
+
+data_total <- function(data, varname, groupnames){
+  require(plyr)
+  summary_func <- function(x, col){
+    c(sum = sum(x[[col]], na.rm=TRUE),
+      sd = sd(x[[col]], na.rm=TRUE))
+  }
+  data_sum<-ddply(data, groupnames, .fun=summary_func,
+                  varname)
+  data_sum <- rename(data_sum, c("sum" = varname))
+  return(data_sum)
+}
+
+# creating a data frame that summarizes the total catches from 2019-2021
+
+df19to21 <- data_total(eth.long.19.20.21, varname="number", 
+                       groupnames=c("species", "rate", "year","block"))
