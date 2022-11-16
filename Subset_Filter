@@ -1,0 +1,1 @@
+g<-(df19to21[df19to21$species=="germanus",])
