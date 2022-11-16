@@ -1,0 +1,10 @@
+library(lme4)
+library(emmeans)
+
+mod2<-lmer(maiche~type + (1|date) + (1|block), data=dat)
+
+anova(mod1)
+
+b<-emmeans(mod2, pairwise~type)
+
+b
