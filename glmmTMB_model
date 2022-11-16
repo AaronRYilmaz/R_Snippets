@@ -1,0 +1,1 @@
+gall <- glmmTMB(number ~ rate+(1|block),  data=sub, family = nbinom2)
