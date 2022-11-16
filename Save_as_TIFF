@@ -1,0 +1,3 @@
+tiff("germanus.tif", height=24, width=8, units="in", res=300)
+multiplot(a, b, c, d, cols=1)
+dev.off()
