@@ -1,7 +1,49 @@
 ## Check for over/underdispersion in the model
 
+M1<-glm(total.beetles~type, family = 'poisson', data= dat)
 
 E2 <- resid(M1, type = "pearson")
 N  <- nrow(dat)
 p  <- length(coef(M1))   
+sum(E2^2) / (N - p)
+
+
+
+# negative binomial
+
+M2<- glm.nb(total.beetles~type, data=dat)
+
+summary(M2)
+
+
+# Dispersion statistic
+E2 <- resid(M2, type = "pearson")
+N  <- nrow(dat)
+p  <- length(coef(M2)) + 1  # '+1' is for variance parameter in NB
+sum(E2^2) / (N - p)
+
+
+
+M3 <- zeroinfl(total.beetles~type | ## Predictor for the Poisson process
+                 type, ## Predictor for the Bernoulli process;
+               dist = 'poisson',
+               data = dat)
+
+summary(M3)
+
+# Dispersion statistic
+E2 <- resid(M3, type = "pearson")
+N  <- nrow(dat)
+p  <- length(coef(M3))  
+sum(E2^2) / (N - p)
+
+M4 <- zeroinfl(total.beetles ~ type|
+                 type,
+               dist = 'negbin',
+               data = dat)
+summary(M4)
+
+E2 <- resid(M4, type = "pearson")
+N  <- nrow(dat)
+p  <- length(coef(M4)) + 1 # '+1' is due to theta
 sum(E2^2) / (N - p)
