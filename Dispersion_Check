@@ -1,0 +1,7 @@
+## Check for over/underdispersion in the model
+
+
+E2 <- resid(M1, type = "pearson")
+N  <- nrow(dat)
+p  <- length(coef(M1))   
+sum(E2^2) / (N - p)
