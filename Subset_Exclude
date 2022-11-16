@@ -1,0 +1,1 @@
+sub<-subset(g19, rate !=0.0)
