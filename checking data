@@ -1,0 +1,5 @@
+head(msleep)
+tail(msleep)
+dim(msleep)
+str(msleep)
+names(msleep)
