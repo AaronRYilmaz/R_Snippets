@@ -1,0 +1,14 @@
+#3.4.2 Saving and loading R data
+#Being able to export to different spreadsheet formats is very useful, but sometimes you want to save an object that can’t be saved in a spreadsheet format. For instance, you may wish to save a machine learning model that you’ve created. .RData files can be used to store one or more R objects.
+
+#To save the objects bookstore and age in a .Rdata file, we can use the save function:
+
+save(bookstore, age, file = "myData.RData")
+#To save all objects in your environment, you can use save.image:
+
+save.image(file = "allMyData.RData")
+#When we wish to load the stored objects, we use the load function:
+
+load(file = "myData.RData")
+
+From the book, "Modern Statistics with R"
