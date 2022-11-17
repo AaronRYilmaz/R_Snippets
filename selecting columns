@@ -1,0 +1,10 @@
+airquality[5, 4]    # The 5th element from the 4th column,
+                    # i.e. the same as airquality$Temp[5]
+airquality[5,]      # The 5th row of the data
+airquality[, 4]     # The 4th column of the data, like airquality$Temp
+airquality[[4]]     # The 4th column of the data, like airquality$Temp
+airquality[, c(2, 4, 6)] # The 2nd, 4th and 6th columns of the data
+airquality[, -2]    # All columns except the 2nd one
+airquality[, c("Temp", "Wind")] # The Temp and Wind columns
+
+# From "Modern Statistics with R"
