@@ -1,0 +1,15 @@
+max()
+
+min()
+
+which.max(data$var)
+
+data[which.max(data$var),]
+
+which(data$var > 5)
+
+sum(data$var > 5)
+
+any(data$var > 5)
+
+all(data$var > 5)
