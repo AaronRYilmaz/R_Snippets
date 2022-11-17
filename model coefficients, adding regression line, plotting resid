@@ -1,0 +1,12 @@
+# Check model coefficients:
+coef(m)
+
+# Add regression line to plot:
+ggplot(mtcars, aes(hp, mpg)) +
+      geom_point() + 
+      geom_abline(aes(intercept = coef(m)[1], slope = coef(m)[2]),
+                colour = "red")
+                
+# Diagnostic plots for the residuals are obtained using plot:
+
+plot(m)
