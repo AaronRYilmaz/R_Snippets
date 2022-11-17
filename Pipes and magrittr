@@ -1,0 +1,19 @@
+# magrittr introduces a new operator, %>%, called a pipe, which can be used to chain functions together. Calls that you would otherwise write as
+
+new_variable <- function_2(function_1(your_data))
+
+#can be written as
+
+your_data %>% function_1 %>% function_2 -> new_variable
+
+#example
+
+airquality %>%
+      subset(Temp > 80) %>% 
+      inset("Wind", value = .$Wind * 0.44704) %>%
+      aggregate(Wind ~ Month, data = ., FUN = mean) ->
+      hot_wind_means
+      
+      # native pipe, |>
+      
+      # Taken from the book, "Modern Statistics with R"
