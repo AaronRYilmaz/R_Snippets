@@ -1,0 +1,20 @@
+# compute the mean temperature for each month
+
+aggregate(Temp ~ Month, data = airquality, FUN = mean)
+
+# compute summaries for multiple variables at the same time. For instance, we can compute the standard deviations (using sd) of Temp and Wind, grouped by Month
+
+aggregate(cbind(Temp, Wind) ~ Month, data = airquality, FUN = sd)
+
+# num of obs in group
+
+aggregate(Temp ~ Month, data = airquality, FUN = length)
+
+# using "by" instead
+
+by(airquality$Temp, airquality$Month, mean)
+
+# compute the correlation between Wind and Temp grouped by month:
+
+names(airquality)  # Check that Wind and Temp are in columns 3 and 4
+by(airquality[, 3:4], airquality$Month, cor)
