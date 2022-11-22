@@ -1,0 +1,31 @@
+# filtering data by year using pipe operator
+
+data %>%
+  filter(year == 2001, country == "Germany")
+  
+# sorting with arrange
+
+data %>% 
+  arrange(mpg)
+  
+# descending 
+
+data %>% 
+  arrange(desc(mpg))
+  
+# filter then arrange
+
+data %>% 
+  filter(country == "USA") %>%
+  arrange(mpg)
+
+# mutate
+
+data %>%
+  mutate(cost = cost/1000)
+  
+# New variable
+
+data %>%
+  mutate(newVar = Var1 * Var2)
+  
