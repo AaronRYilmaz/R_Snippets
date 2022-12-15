@@ -1,0 +1,44 @@
+# making a structural equation model, when you want to see the direct and indirect effects of multiple independent variables on a response variable
+
+library(piecewiseSEM)
+library(multcompView)
+
+# everything has to be numeric. It sounds weird, but it works out fine. For example, habitat would be "1" and "2" instead of "urban" and "rural"
+
+t$treatment.n<-as.numeric(t$treatment)
+t$habitat.n<-as.numeric(as.factor(t$habitat))
+
+# Create a model of the things you want to see the relationships between
+
+model<-psem(
+  lme(mass.mg~treatment.n+habitat.n, random=~1|colonyID,t), 
+  lme(seconds~mass.mg+treatment.n+habitat.n, random=~1|colonyID,t)
+) 
+
+# the plotted graphic is not very good, and you can't modify it much
+
+plot(model, return = FALSE, node_attrs = data.frame(shape
+                                                  = "rectangle", color = "black", fillcolor = "white"),
+     edge_attrs = data.frame(style = "solid", color = "black"),
+     ns_dashed = T, alpha = 0.05, show = "std", digits = 3,
+     add_edge_label_spaces = TRUE, title= "test")
+
+# a more complex model
+
+model2<-psem(
+  lme(mass.mg~treatment.n+habitat.n, random=~1|colonyID,t), 
+  lme(seconds~mass.mg+treatment.n+habitat.n+attempts, random=~1|colonyID,t),
+  lme(attempts~mass.mg+treatment.n+habitat.n, random=~1|colonyID,t),
+  lme(response~mass.mg+treatment.n+habitat.n, random=~1|colonyID,t)
+) 
+
+
+plot(model2, return = FALSE, node_attrs = data.frame(shape
+                                                    = "rectangle", color = "black", fillcolor = "white"),
+     edge_attrs = data.frame(style = "solid", color = "black"),
+     ns_dashed = T, alpha = 0.05, show = "std", digits = 3,
+     add_edge_label_spaces = TRUE, title= "test")
+
+# summary of model to get statistics
+
+summary(model2)
