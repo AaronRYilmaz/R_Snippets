@@ -17,6 +17,11 @@ ggpairs(msleep[, which(sapply(msleep, class) == "numeric")])
 ggpairs(msleep[, c("vore", "sleep_total", "sleep_rem", "sleep_cycle",
                    "awake", "brainwt", "bodywt")])
                    
+# this one makes a correlogram
+
+ggcorr(msleep[, c("sleep_total", "sleep_rem", "sleep_cycle", "awake",
+                   "brainwt", "bodywt")])
+                   
 # base R will also make a scatterplot matrix, but it doesn't give values
 
 pairs(airquality)
