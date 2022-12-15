@@ -1,3 +1,5 @@
 library(plotly)
 plot_ly(airquality, x = ~Ozone, y = ~Wind, z = ~Temp,
         color = ~factor(Month))
+
+# from the book "Modern Statistics with R" -- all credit to them!
