@@ -1,0 +1,39 @@
+# to look at correlations between all the variables at once, you can only use numeric variables with some packages
+
+library(GGally)
+ggpairs(airquality)
+
+# if you want to select only some variables
+
+ggpairs(msleep[, c("sleep_total", "sleep_rem", "sleep_cycle", "awake",
+                   "brainwt", "bodywt")])
+                   
+# scatterplot of all numeric variables 
+
+ggpairs(msleep[, which(sapply(msleep, class) == "numeric")])
+
+# for the categorical variable, it will make a barplot
+
+ggpairs(msleep[, c("vore", "sleep_total", "sleep_rem", "sleep_cycle",
+                   "awake", "brainwt", "bodywt")])
+                   
+# base R will also make a scatterplot matrix, but it doesn't give values
+
+pairs(airquality)
+
+# the above lightly modified from the book "Modern Statistics with R" -- all credit to them!
+
+# below is from sthda.com
+
+# this makes really nice, colored correlation matrices with lots of cool options:
+
+library(corrplot)
+
+corrplot(res, type = "upper", order = "hclust", 
+         tl.col = "black", tl.srt = 45)
+         
+# this package is nice for getting stats and best fit lines
+
+library("PerformanceAnalytics")
+my_data <- mtcars[, c(1,3,4,5,6,7)]
+chart.Correlation(my_data, histogram=TRUE, pch=19)
